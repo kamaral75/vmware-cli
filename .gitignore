@@ -1,2 +1,4 @@
 config.py
 *.txt
+*.pyc
+__pycache__
