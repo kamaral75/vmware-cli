@@ -28,7 +28,7 @@ class VMWare(object):
 
     def connect_vsphere(self):
         service_instance = None
-        ssl_verification = False
+        ssl_verification = True
 
         try:
             if ssl_verification:
@@ -196,9 +196,11 @@ class VMWare(object):
 
 def main():
   # Initialize VMWareAPI class
-  vmwareAPI = VMWareAPI(vmware_username, vmware_password, vmware_hostname, vmware_port)
+  vmwareAPI = VMWare(vmware_username, vmware_password, vmware_hostname, vmware_port)
+  # Establish a connection to vsphere API and get service instance
+  service_instance = vmwareAPI.connect_vsphere()
   # Call get_vm_inventory
-  vmwareAPI.get_vm_inventory()
+  vmwareAPI.get_vm_inventory(service_instance)
 
 if __name__ == "__main__":
   main()
